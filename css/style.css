@@ -377,6 +377,25 @@ body {
     padding: 80px 40px;
 }
 
+/* Hello World Section */
+.hello-world-section {
+    text-align: center;
+    padding: 120px 40px 80px;
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hello-world-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: var(--primary-color);
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .nav-container {
@@ -394,6 +413,14 @@ body {
     .home-view,
     .view-content {
         padding: 60px 20px;
+    }
+    
+    .hello-world-section {
+        padding: 80px 20px 60px;
+    }
+    
+    .hello-world-message {
+        font-size: 48px;
     }
     
     .section-title,
@@ -435,6 +462,10 @@ body {
     
     .home-section {
         margin-bottom: 80px;
+    }
+    
+    .hello-world-message {
+        font-size: 36px;
     }
     
     .artist-card,

@@ -2,6 +2,11 @@ export class HomeView {
     render() {
         return `
             <div class="home-view view active">
+                <!-- Hello World Message -->
+                <div class="hello-world-section">
+                    <h1 class="hello-world-message">Hello World</h1>
+                </div>
+
                 <!-- Artists Section -->
                 <div class="home-section">
                     <h2 class="section-title">Featured Artists</h2>
