@@ -3,31 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Art Gallery</title>
+    <title>Gallery</title>
+    <meta name="description" content="Gallery is a luxury art space, with an international collective of artists, curators, and cultural strategists, sharing one strong creative signature.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">Gallery</span>
+    <div id="application">
+        <!-- Header -->
+        <div id="header">
+            <div class="main-logo">
+                <a href="/" data-route="home">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="black" stroke-width="2"/>
+                        <text x="100" y="95" text-anchor="middle" font-family="Inter" font-size="24" font-weight="300" fill="black">gallery</text>
+                        <text x="100" y="115" text-anchor="middle" font-family="Inter" font-size="12" font-weight="300" fill="black">.net</text>
+                    </svg>
+                </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="/" data-route="home" class="nav-link">Home</a></li>
-                <li><a href="/projects" data-route="projects" class="nav-link">Projects</a></li>
-                <li><a href="/beauty" data-route="beauty" class="nav-link">Beauty</a></li>
-                <li><a href="/exhibitions" data-route="exhibitions" class="nav-link">Exhibitions</a></li>
-                <li><a href="/art-objects" data-route="art-objects" class="nav-link">Art Objects</a></li>
-            </ul>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/" data-route="home">Home</a></li>
+                    <li><a href="/projects" data-route="projects">Projects</a></li>
+                    <li><a href="/beauty" data-route="beauty">Beauty</a></li>
+                    <li><a href="/exhibitions" data-route="exhibitions">Exhibitions</a></li>
+                    <li><a href="/art-objects" data-route="art-objects">Art Objects</a></li>
+                    <li><a href="/contact" data-route="contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
 
-    <main id="main-content" class="main-content">
-        <!-- Content will be dynamically loaded here -->
-    </main>
+        <!-- Main Container -->
+        <div class="container" id="main-content">
+            <!-- Content will be dynamically loaded here -->
+        </div>
+        
+        <!-- Footer -->
+        <div id="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="200" height="100" viewBox="0 0 200 100">
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="grey" stroke-width="1"/>
+                        <text x="50" y="48" text-anchor="middle" font-family="Inter" font-size="12" font-weight="300" fill="grey">gallery</text>
+                        <text x="50" y="58" text-anchor="middle" font-family="Inter" font-size="6" font-weight="300" fill="grey">.net</text>
+                    </svg>
+                </div>
+                <div class="middle">
+                    <div>
+                        <div class="row">
+                            <div class="section">
+                                <h4><a href="/about">About</a></h4>
+                                <span>Contemporary Art Space</span>
+                            </div>
+                            <div class="section networks">
+                                <h4>Follow</h4>
+                                <div class="networks">
+                                    <a href="#" aria-label="Instagram">IG</a>
+                                    <a href="#" aria-label="Twitter">TW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact col">
+                    <h4>Contact</h4>
+                    <span>info@gallery.net</span>
+                    <span>+1 (212) 555-0123</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="js/main.js"></script>
 </body>

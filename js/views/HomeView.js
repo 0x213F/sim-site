@@ -1,61 +1,64 @@
 export class HomeView {
     render() {
         return `
-            <div class="home-view view active">
-                <!-- Artists Section -->
-                <div class="home-section">
-                    <h2 class="section-title">Featured Artists</h2>
-                    <div class="artists-grid">
-                        <div class="artist-card" data-artist="elena-vasquez">
-                            <h3 class="artist-name">Elena Vásquez</h3>
-                            <p class="artist-description">Contemporary sculptor exploring the intersection of organic forms and industrial materials. Her work challenges conventional notions of beauty through deliberate imperfection.</p>
-                        </div>
-                        <div class="artist-card" data-artist="marcus-chen">
-                            <h3 class="artist-name">Marcus Chen</h3>
-                            <p class="artist-description">Multimedia artist whose installations question the nature of perception. His pieces invite viewers to confront their assumptions about reality and artifice.</p>
-                        </div>
-                        <div class="artist-card" data-artist="sofia-nakamura">
-                            <h3 class="artist-name">Sofia Nakamura</h3>
-                            <p class="artist-description">Performance artist and painter whose work examines cultural identity through the lens of displacement. Her pieces subvert traditional aesthetic hierarchies.</p>
-                        </div>
-                        <div class="artist-card" data-artist="david-okafor">
-                            <h3 class="artist-name">David Okafor</h3>
-                            <p class="artist-description">Digital artist creating immersive experiences that blur the boundaries between virtual and physical spaces. His work critiques our relationship with technology.</p>
-                        </div>
+            <div class="view active">
+                <!-- Hero Section -->
+                <section class="hero-section">
+                    <h1 class="hero-title">Gallery is a Luxury Art Space...</h1>
+                    <p class="hero-subtitle">with an international collective of artists, curators, and cultural strategists, sharing one strong creative signature</p>
+                    <p class="hero-description">, grounded in a holistic approach to understanding contemporary art, beauty, and the cultural landscape. We are driven by <strong>strategic</strong> curation, <strong>design</strong> thinking and a love of the <strong>sublime</strong>.</p>
+                    <div class="hero-keywords">
+                        <span class="keyword">Estrange</span>
+                        <span class="keyword">Quality</span>
+                        <span class="keyword">Value</span>
                     </div>
-                </div>
+                </section>
 
-                <!-- People, Places, Things Frame -->
-                <div class="home-section">
-                    <div class="curated-frame">
-                        <h2 class="frame-title">"People, Places, Things"</h2>
-                        <div class="curated-links">
-                            <a href="#" class="curated-link">
-                                <div class="link-title">Upcoming: Venice Biennale Preview</div>
-                                <div class="link-description">Private viewing of selected works before the international exhibition</div>
-                            </a>
-                            <a href="#" class="curated-link">
-                                <div class="link-title">Artist Talk Series</div>
-                                <div class="link-description">Monthly conversations exploring contemporary practice and theory</div>
-                            </a>
-                            <a href="#" class="curated-link">
-                                <div class="link-title">Collector's Circle</div>
-                                <div class="link-description">Exclusive access to emerging artists and private studio visits</div>
-                            </a>
-                            <a href="#" class="curated-link">
-                                <div class="link-title">Critical Essays</div>
-                                <div class="link-description">Commissioned writings on art, culture, and the subversion of beauty</div>
-                            </a>
+                <!-- Featured Artists Section -->
+                <section class="content-section">
+                    <h2 class="section-title">Featured</h2>
+                    <div class="grid grid-3">
+                        <div class="card artist-card" data-artist="elena-vasquez">
+                            <div class="card-image">
+                                <span>Artist Portrait</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Contemporary Sculpture</div>
+                                <h3 class="card-title">Elena Vásquez</h3>
+                                <p class="card-description">Exploring the intersection of organic forms and industrial materials through deliberate imperfection and challenging conventional notions of beauty.</p>
+                            </div>
+                        </div>
+
+                        <div class="card artist-card" data-artist="marcus-chen">
+                            <div class="card-image">
+                                <span>Artist Portrait</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Multimedia Installation</div>
+                                <h3 class="card-title">Marcus Chen</h3>
+                                <p class="card-description">Creating installations that question perception and invite viewers to confront assumptions about reality and artifice.</p>
+                            </div>
+                        </div>
+
+                        <div class="card artist-card" data-artist="sofia-nakamura">
+                            <div class="card-image">
+                                <span>Artist Portrait</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Performance & Painting</div>
+                                <h3 class="card-title">Sofia Nakamura</h3>
+                                <p class="card-description">Examining cultural identity through displacement, subverting traditional aesthetic hierarchies through performance and paint.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 <!-- Contact Section -->
-                <div class="contact-section">
+                <section class="contact-section">
                     <h2 class="contact-title">Public and Private</h2>
                     <p class="contact-subtitle">DM for meetings, viewing, estimates</p>
                     <button class="contact-button">Contact</button>
-                </div>
+                </section>
             </div>
         `;
     }
@@ -66,8 +69,9 @@ export class HomeView {
 
     setupEventListeners() {
         document.addEventListener('click', (event) => {
-            if (event.target.matches('.artist-card')) {
-                const artistId = event.target.getAttribute('data-artist');
+            if (event.target.matches('.artist-card') || event.target.closest('.artist-card')) {
+                const card = event.target.matches('.artist-card') ? event.target : event.target.closest('.artist-card');
+                const artistId = card.getAttribute('data-artist');
                 if (artistId) {
                     window.router.navigate(`/artist/${artistId}`);
                 }

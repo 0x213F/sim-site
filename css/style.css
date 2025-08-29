@@ -6,235 +6,388 @@
 }
 
 :root {
-    --primary-color: #1a1a1a;
-    --secondary-color: #f8f8f8;
-    --accent-color: #888888;
-    --text-color: #2c2c2c;
-    --light-gray: #e5e5e5;
-    --border-color: rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --black: #000000;
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --text-gray: #666666;
+    --border-gray: #e0e0e0;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-body {
+html, body {
+    height: 100%;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 300;
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: #ffffff;
-    font-size: 16px;
-    letter-spacing: -0.01em;
+    color: var(--black);
+    background-color: var(--white);
+    overflow-x: hidden;
 }
 
-/* Navigation */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
-    padding: 0;
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-}
-
-.nav-logo .logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: var(--primary-color);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 60px;
-    align-items: center;
-}
-
-.nav-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 15px;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    transition: var(--transition);
+/* Application Container */
+#application {
+    min-height: 100vh;
+    width: 100%;
     position: relative;
 }
 
-.nav-link::after {
+/* Header */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    background: var(--white);
+    z-index: 1000;
+}
+
+.main-logo a {
+    text-decoration: none;
+}
+
+.main-logo svg {
+    width: 120px;
+    height: 50px;
+}
+
+/* Main Navigation */
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.main-nav li {
+    margin: 0;
+}
+
+.main-nav a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    transition: var(--transition);
+    padding: 10px 0;
+    position: relative;
+}
+
+.main-nav a::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: 5px;
     left: 0;
     width: 0;
     height: 1px;
-    background-color: var(--primary-color);
+    background-color: var(--black);
     transition: var(--transition);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.main-nav a:hover::after,
+.main-nav a.active::after {
     width: 100%;
 }
 
-.nav-link:hover {
-    color: var(--primary-color);
+.main-nav a:hover {
+    opacity: 0.7;
 }
 
-/* Main content */
-.main-content {
+/* Container */
+.container {
     margin-top: 80px;
     min-height: calc(100vh - 80px);
 }
 
-/* Home view styles */
-.home-view {
-    padding: 80px 40px;
+/* Hero Section (Home) */
+.hero-section {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 80px;
+    background-color: var(--white);
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 400;
+    color: var(--black);
+    margin-bottom: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-gray);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.hero-description {
+    max-width: 800px;
+    font-size: 16px;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 80px;
+}
+
+.hero-keywords {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.keyword {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 100px 80px;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-.home-section {
-    margin-bottom: 120px;
-}
-
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
+    font-size: 64px;
     font-weight: 300;
-    color: var(--primary-color);
-    margin-bottom: 60px;
-    letter-spacing: -0.02em;
-    text-align: center;
-}
-
-/* Artists section */
-.artists-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    color: var(--black);
     margin-bottom: 80px;
+    text-align: center;
+    letter-spacing: -0.02em;
 }
 
-.artist-card {
-    background: var(--secondary-color);
-    padding: 40px;
-    border: 1px solid var(--border-color);
+/* Grid Layouts */
+.grid {
+    display: grid;
+    gap: 60px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border: 1px solid var(--border-gray);
+    padding: 0;
     transition: var(--transition);
     cursor: pointer;
 }
 
-.artist-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.artist-name {
+.card-image {
+    width: 100%;
+    height: 300px;
+    background: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-gray);
+}
+
+.card-content {
+    padding: 40px;
+}
+
+.card-title {
     font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: 400;
-    color: var(--primary-color);
+    color: var(--black);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: var(--text-gray);
+    font-weight: 300;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.card-description {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* Beauty Page */
+.beauty-hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 80px;
+    background-color: var(--white);
+}
+
+.beauty-image {
+    width: 400px;
+    height: 300px;
+    background: var(--light-gray);
+    border: 1px solid var(--border-gray);
+    margin-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+}
+
+.beauty-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--black);
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Footer */
+#footer {
+    background: var(--white);
+    padding: 80px 40px 40px;
+    border-top: 1px solid var(--border-gray);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+    gap: 60px;
+    align-items: start;
+}
+
+.footer-logo svg {
+    width: 100px;
+    height: 50px;
+}
+
+.middle {
+    flex: 1;
+}
+
+.row {
+    display: flex;
+    gap: 60px;
+}
+
+.section h4 {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--black);
     margin-bottom: 15px;
 }
 
-.artist-description {
-    font-size: 14px;
-    color: var(--accent-color);
-    line-height: 1.8;
-}
-
-/* People, Places, Things frame */
-.curated-frame {
-    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
-    padding: 80px;
-    border: 1px solid var(--border-color);
-    text-align: center;
-}
-
-.frame-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--primary-color);
-    margin-bottom: 40px;
-    font-style: italic;
-}
-
-.curated-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.curated-link {
-    padding: 30px;
-    background: white;
-    border: 1px solid var(--border-color);
+.section h4 a {
+    color: var(--black);
     text-decoration: none;
-    color: var(--text-color);
+}
+
+.section span {
+    font-size: 14px;
+    color: var(--text-gray);
+    font-weight: 300;
+}
+
+.networks {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.networks a {
+    font-size: 14px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-weight: 300;
     transition: var(--transition);
 }
 
-.curated-link:hover {
-    background: var(--secondary-color);
-    transform: scale(1.02);
+.networks a:hover {
+    color: var(--black);
 }
 
-.link-title {
+.contact.col h4 {
     font-size: 16px;
     font-weight: 400;
-    margin-bottom: 10px;
+    color: var(--black);
+    margin-bottom: 15px;
 }
 
-.link-description {
-    font-size: 13px;
-    color: var(--accent-color);
+.contact.col span {
+    display: block;
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 8px;
     font-weight: 300;
 }
 
-/* Contact section */
+/* Contact Section */
 .contact-section {
+    background: var(--white);
+    color: var(--black);
     text-align: center;
-    background: var(--primary-color);
-    color: white;
-    padding: 100px 40px;
-    margin-top: 80px;
+    padding: 120px 80px;
+    border-top: 1px solid var(--border-gray);
 }
 
 .contact-title {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: var(--black);
 }
 
 .contact-subtitle {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
-    margin-bottom: 40px;
-    opacity: 0.8;
+    margin-bottom: 60px;
+    color: var(--text-gray);
 }
 
 .contact-button {
     background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 15px 40px;
+    border: 2px solid var(--black);
+    color: var(--black);
+    padding: 20px 50px;
     font-size: 14px;
     font-weight: 300;
     text-transform: uppercase;
@@ -244,201 +397,156 @@ body {
 }
 
 .contact-button:hover {
-    background: white;
-    color: var(--primary-color);
+    background: var(--black);
+    color: var(--white);
 }
 
-/* Beauty view */
-.beauty-view {
-    padding: 120px 40px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.beauty-image {
-    width: 100%;
-    max-width: 400px;
-    height: 300px;
-    background: var(--light-gray);
-    margin: 0 auto 60px;
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-color);
-    font-size: 14px;
-}
-
-.beauty-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--primary-color);
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Exhibitions view */
-.exhibitions-view {
-    padding: 80px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.exhibitions-header {
-    text-align: center;
-    margin-bottom: 80px;
-}
-
-.exhibitions-subtitle {
-    font-size: 18px;
-    color: var(--accent-color);
-    font-weight: 300;
-    margin-top: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.exhibitions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-}
-
-.exhibition-card {
-    background: var(--secondary-color);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: var(--transition);
-}
-
-.exhibition-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-}
-
-.exhibition-media {
-    width: 100%;
-    height: 250px;
-    background: var(--light-gray);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-color);
-    font-size: 14px;
-}
-
-.exhibition-content {
-    padding: 40px;
-}
-
-.exhibition-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.exhibition-text {
-    font-size: 14px;
-    color: var(--accent-color);
-    line-height: 1.8;
-}
-
-/* Generic view styles */
+/* View Transitions */
 .view {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.6s ease;
 }
 
 .view.active {
     opacity: 1;
-    transform: translateY(0);
 }
 
-.view-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 300;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 80px;
-    letter-spacing: -0.02em;
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .content-section {
+        padding: 80px 40px;
+    }
+    
+    .hero-section,
+    .beauty-hero {
+        padding: 80px 40px;
+    }
+    
+    .section-title {
+        font-size: 48px;
+    }
+    
+    .hero-title {
+        font-size: clamp(36px, 8vw, 80px);
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
 }
 
-.view-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 40px;
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
-    .nav-container {
-        padding: 15px 20px;
+    #header {
+        padding: 0 20px;
+        height: 70px;
     }
     
-    .nav-links {
-        gap: 30px;
+    .main-logo svg {
+        width: 100px;
+        height: 40px;
     }
     
-    .nav-link {
+    .main-nav ul {
+        gap: 20px;
+    }
+    
+    .main-nav a {
         font-size: 14px;
     }
     
-    .home-view,
-    .view-content {
-        padding: 60px 20px;
+    .container {
+        margin-top: 70px;
+        min-height: calc(100vh - 70px);
     }
     
-    .section-title,
-    .view-title {
+    .hero-section,
+    .beauty-hero {
+        min-height: calc(100vh - 70px);
+    }
+    
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-section {
+        padding: 60px 30px;
+    }
+    
+    .hero-section,
+    .beauty-hero,
+    .contact-section {
+        padding: 60px 30px;
+    }
+    
+    .hero-keywords {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .beauty-image {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .beauty-quote {
         font-size: 28px;
     }
     
-    .artists-grid,
-    .exhibitions-grid {
-        grid-template-columns: 1fr;
+    #footer {
+        padding: 60px 20px 30px;
+    }
+    
+    .footer-content {
         gap: 30px;
     }
     
-    .curated-frame {
-        padding: 40px 20px;
-    }
-    
-    .curated-links {
-        grid-template-columns: 1fr;
-    }
-    
-    .contact-section {
-        padding: 60px 20px;
+    .row {
+        flex-direction: column;
+        gap: 30px;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-links {
-        gap: 20px;
+    #header {
+        padding: 0 15px;
+        height: 60px;
     }
     
-    .nav-link {
+    .main-logo svg {
+        width: 80px;
+        height: 35px;
+    }
+    
+    .main-nav ul {
+        gap: 15px;
+    }
+    
+    .main-nav a {
         font-size: 12px;
     }
     
-    .logo-text {
-        font-size: 20px;
+    .container {
+        margin-top: 60px;
+        min-height: calc(100vh - 60px);
     }
     
-    .home-section {
-        margin-bottom: 80px;
+    .hero-section,
+    .beauty-hero {
+        min-height: calc(100vh - 60px);
     }
     
-    .artist-card,
-    .exhibition-content {
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .card-content {
         padding: 30px;
     }
 }

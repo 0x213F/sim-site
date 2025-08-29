@@ -2,148 +2,59 @@ export class ProjectsView {
     render() {
         return `
             <div class="view active">
-                <div class="view-content">
-                    <h1 class="view-title">Projects</h1>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <div class="project-media">
-                                <div class="placeholder-text">Project Image</div>
+                <section class="content-section">
+                    <h1 class="section-title">Projects</h1>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-image">
+                                <span>Project Image</span>
                             </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Deconstructed Landscapes</h3>
-                                <p class="project-description">A curatorial exploration of how contemporary artists reimagine natural environments through fragmentation and reconstruction.</p>
-                                <div class="project-meta">
-                                    <span class="project-year">2024</span>
-                                    <span class="project-type">Group Exhibition</span>
-                                </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Group Exhibition 2024</div>
+                                <h3 class="card-title">Deconstructed Landscapes</h3>
+                                <p class="card-description">After more than a decade of collaboration, Gallery worked together with international artists to hone the image of contemporary landscape art to accommodate who and what they have become since we first met them. The work involved strategy around key messages, an identity update, art direction, design and build of their new website. This is the third iteration of this masterful and unique practice.</p>
                             </div>
                         </div>
                         
-                        <div class="project-card">
-                            <div class="project-media">
-                                <div class="placeholder-text">Project Image</div>
+                        <div class="card">
+                            <div class="card-image">
+                                <span>Project Image</span>
                             </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Uncomfortable Truths</h3>
-                                <p class="project-description">Solo exhibition challenging viewers to confront the discomfort inherent in honest artistic expression.</p>
-                                <div class="project-meta">
-                                    <span class="project-year">2024</span>
-                                    <span class="project-type">Solo Exhibition</span>
-                                </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Solo Exhibition 2024</div>
+                                <h3 class="card-title">Uncomfortable Truths</h3>
+                                <p class="card-description">A curatorial exploration challenging viewers to confront the discomfort inherent in honest artistic expression. Gallery strategized with the artist to help get the word out. Work included: Strategy, a new Visual Identity, Art Direction and Design as well as the build of their new website using the group's existing framework.</p>
                             </div>
                         </div>
                         
-                        <div class="project-card">
-                            <div class="project-media">
-                                <div class="placeholder-text">Project Image</div>
+                        <div class="card">
+                            <div class="card-image">
+                                <span>Project Image</span>
                             </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Material Dialogues</h3>
-                                <p class="project-description">Investigation into how different materials communicate across cultural and temporal boundaries.</p>
-                                <div class="project-meta">
-                                    <span class="project-year">2023</span>
-                                    <span class="project-type">Installation</span>
-                                </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Installation 2023</div>
+                                <h3 class="card-title">Material Dialogues</h3>
+                                <p class="card-description">Investigation into how different materials communicate across cultural and temporal boundaries. Special attention was given to the packaging design for this small run edition, which was destined to become a collector's item. Come to Gallery if you want to see it. Work included: Art Direction, Packaging Design, Prototyping and digital tools to support and promote the initiative.</p>
                             </div>
                         </div>
                         
-                        <div class="project-card">
-                            <div class="project-media">
-                                <div class="placeholder-text">Project Image</div>
+                        <div class="card">
+                            <div class="card-image">
+                                <span>Project Image</span>
                             </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Digital Impermanence</h3>
-                                <p class="project-description">Multimedia project exploring the ephemeral nature of digital art and virtual experiences.</p>
-                                <div class="project-meta">
-                                    <span class="project-year">2023</span>
-                                    <span class="project-type">Digital Art</span>
-                                </div>
+                            <div class="card-content">
+                                <div class="card-subtitle">Digital Art 2023</div>
+                                <h3 class="card-title">Digital Impermanence</h3>
+                                <p class="card-description">Multimedia project exploring the ephemeral nature of digital art and virtual experiences. The artist selects emerging digital entrepreneurs from a large pool of candidates to provide funding and strategic help to young and promising creations from all sectors.</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         `;
     }
 
-    getStyles() {
-        return `
-            <style>
-                .projects-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-                    gap: 60px;
-                    margin-top: 40px;
-                }
-
-                .project-card {
-                    background: var(--secondary-color);
-                    border: 1px solid var(--border-color);
-                    overflow: hidden;
-                    transition: var(--transition);
-                }
-
-                .project-card:hover {
-                    transform: translateY(-8px);
-                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-                }
-
-                .project-media {
-                    width: 100%;
-                    height: 300px;
-                    background: var(--light-gray);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: var(--accent-color);
-                    font-size: 14px;
-                }
-
-                .project-content {
-                    padding: 40px;
-                }
-
-                .project-title {
-                    font-family: 'Playfair Display', serif;
-                    font-size: 24px;
-                    font-weight: 400;
-                    color: var(--primary-color);
-                    margin-bottom: 20px;
-                }
-
-                .project-description {
-                    font-size: 14px;
-                    color: var(--accent-color);
-                    line-height: 1.8;
-                    margin-bottom: 30px;
-                }
-
-                .project-meta {
-                    display: flex;
-                    gap: 20px;
-                    font-size: 12px;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    color: var(--accent-color);
-                }
-
-                @media (max-width: 768px) {
-                    .projects-grid {
-                        grid-template-columns: 1fr;
-                        gap: 40px;
-                    }
-                }
-            </style>
-        `;
-    }
-
     init() {
-        const existingStyles = document.querySelector('#projects-styles');
-        if (!existingStyles) {
-            const styleElement = document.createElement('div');
-            styleElement.id = 'projects-styles';
-            styleElement.innerHTML = this.getStyles();
-            document.head.appendChild(styleElement);
-        }
+        // No additional initialization needed
     }
 }
