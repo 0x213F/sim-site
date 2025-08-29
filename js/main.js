@@ -1,164 +1,231 @@
-// Main JavaScript file for the static website
+import { Router } from './utils/router.js';
+import { HomeView } from './views/HomeView.js';
+import { ProjectsView } from './views/ProjectsView.js';
+import { BeautyView } from './views/BeautyView.js';
+import { ExhibitionsView } from './views/ExhibitionsView.js';
+import { ArtObjectsView } from './views/ArtObjectsView.js';
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the website
-    init();
-});
-
-function init() {
-    // Set up smooth scrolling
-    setupSmoothScrolling();
-    
-    // Display branch information
-    displayBranchInfo();
-    
-    // Set up button interactions
-    setupButtonInteractions();
-    
-    // Add some interactive animations
-    setupAnimations();
-}
-
-function setupSmoothScrolling() {
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-function displayBranchInfo() {
-    // Get branch info from URL or set defaults
-    const currentBranch = getBranchFromURL() || 'main';
-    const deployURL = getDeployURL();
-    
-    // Update the display elements
-    const branchElement = document.getElementById('current-branch');
-    const urlElement = document.getElementById('deploy-url');
-    
-    if (branchElement) {
-        branchElement.textContent = currentBranch;
+class App {
+    constructor() {
+        this.router = new Router();
+        this.mainContent = document.getElementById('main-content');
+        this.views = {
+            home: new HomeView(),
+            projects: new ProjectsView(),
+            beauty: new BeautyView(),
+            exhibitions: new ExhibitionsView(),
+            artObjects: new ArtObjectsView()
+        };
+        
+        this.setupRoutes();
+        window.router = this.router;
     }
-    
-    if (urlElement) {
-        urlElement.textContent = deployURL;
-    }
-}
 
-function getBranchFromURL() {
-    // Extract branch name from GitHub Pages URL structure
-    const hostname = window.location.hostname;
-    const pathname = window.location.pathname;
-    
-    // For GitHub Pages: username.github.io/repo-name/branch-name
-    if (hostname.includes('github.io')) {
-        const pathParts = pathname.split('/').filter(part => part !== '');
-        if (pathParts.length > 1) {
-            return pathParts[1]; // Second part is usually the branch
+    setupRoutes() {
+        this.router.addRoute('/', () => this.renderView('home'));
+        this.router.addRoute('/projects', () => this.renderView('projects'));
+        this.router.addRoute('/beauty', () => this.renderView('beauty'));
+        this.router.addRoute('/exhibitions', () => this.renderView('exhibitions'));
+        this.router.addRoute('/art-objects', () => this.renderView('artObjects'));
+        
+        // Artist detail pages (placeholder)
+        this.router.addRoute('/artist/elena-vasquez', () => this.renderArtistDetail('Elena Vásquez'));
+        this.router.addRoute('/artist/marcus-chen', () => this.renderArtistDetail('Marcus Chen'));
+        this.router.addRoute('/artist/sofia-nakamura', () => this.renderArtistDetail('Sofia Nakamura'));
+        this.router.addRoute('/artist/david-okafor', () => this.renderArtistDetail('David Okafor'));
+        
+        // 404 route
+        this.router.addRoute('/404', () => this.render404());
+    }
+
+    renderView(viewName) {
+        const view = this.views[viewName];
+        if (view) {
+            this.fadeOut(() => {
+                this.mainContent.innerHTML = view.render();
+                view.init();
+                this.fadeIn();
+            });
         }
     }
-    
-    return 'main'; // Default branch
-}
 
-function getDeployURL() {
-    return window.location.href;
-}
-
-function setupButtonInteractions() {
-    // CTA Button interaction
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function() {
-            // Add a nice click animation
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
-            
-            // Show an alert or perform an action
-            showNotification('Welcome! This is your static website.');
+    renderArtistDetail(artistName) {
+        const content = `
+            <div class="view active">
+                <div class="view-content">
+                    <h1 class="view-title">${artistName}</h1>
+                    <div class="artist-detail">
+                        <div class="artist-image">
+                            <div class="placeholder-text">Artist Portrait</div>
+                        </div>
+                        <div class="artist-info">
+                            <h3>About the Artist</h3>
+                            <p>Detailed biography and artistic statement will be available soon. Please contact the gallery for more information about ${artistName}'s work and upcoming exhibitions.</p>
+                            <div class="artist-works">
+                                <h4>Selected Works</h4>
+                                <div class="works-grid">
+                                    <div class="work-item">
+                                        <div class="work-thumbnail">
+                                            <span class="placeholder-text">Work Image</span>
+                                        </div>
+                                        <p class="work-title">Untitled Work 1</p>
+                                    </div>
+                                    <div class="work-item">
+                                        <div class="work-thumbnail">
+                                            <span class="placeholder-text">Work Image</span>
+                                        </div>
+                                        <p class="work-title">Untitled Work 2</p>
+                                    </div>
+                                    <div class="work-item">
+                                        <div class="work-thumbnail">
+                                            <span class="placeholder-text">Work Image</span>
+                                        </div>
+                                        <p class="work-title">Untitled Work 3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        this.fadeOut(() => {
+            this.mainContent.innerHTML = content;
+            this.addArtistDetailStyles();
+            this.fadeIn();
         });
+    }
+
+    render404() {
+        const content = `
+            <div class="view active">
+                <div class="view-content">
+                    <h1 class="view-title">Page Not Found</h1>
+                    <p style="text-align: center; color: var(--accent-color); margin-top: 40px;">
+                        The page you're looking for doesn't exist.
+                    </p>
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="/" class="nav-link" data-route="home" style="text-decoration: underline;">Return Home</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        this.fadeOut(() => {
+            this.mainContent.innerHTML = content;
+            this.fadeIn();
+        });
+    }
+
+    addArtistDetailStyles() {
+        const existingStyles = document.querySelector('#artist-detail-styles');
+        if (!existingStyles) {
+            const styles = `
+                <style id="artist-detail-styles">
+                    .artist-detail {
+                        display: grid;
+                        grid-template-columns: 400px 1fr;
+                        gap: 60px;
+                        margin-top: 40px;
+                    }
+
+                    .artist-image {
+                        width: 100%;
+                        height: 500px;
+                        background: var(--light-gray);
+                        border: 1px solid var(--border-color);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var(--accent-color);
+                    }
+
+                    .artist-info h3 {
+                        font-family: 'Playfair Display', serif;
+                        font-size: 24px;
+                        font-weight: 300;
+                        color: var(--primary-color);
+                        margin-bottom: 20px;
+                    }
+
+                    .artist-info p {
+                        font-size: 14px;
+                        color: var(--accent-color);
+                        line-height: 1.8;
+                        margin-bottom: 40px;
+                    }
+
+                    .artist-info h4 {
+                        font-family: 'Playfair Display', serif;
+                        font-size: 20px;
+                        font-weight: 300;
+                        color: var(--primary-color);
+                        margin-bottom: 30px;
+                    }
+
+                    .works-grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 20px;
+                    }
+
+                    .work-item {
+                        text-align: center;
+                    }
+
+                    .work-thumbnail {
+                        width: 100%;
+                        height: 150px;
+                        background: var(--light-gray);
+                        border: 1px solid var(--border-color);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var(--accent-color);
+                        font-size: 12px;
+                        margin-bottom: 10px;
+                    }
+
+                    .work-title {
+                        font-size: 12px;
+                        color: var(--text-color);
+                    }
+
+                    @media (max-width: 768px) {
+                        .artist-detail {
+                            grid-template-columns: 1fr;
+                            gap: 40px;
+                        }
+                        
+                        .works-grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                </style>
+            `;
+            document.head.insertAdjacentHTML('beforeend', styles);
+        }
+    }
+
+    fadeOut(callback) {
+        this.mainContent.style.opacity = '0';
+        this.mainContent.style.transform = 'translateY(20px)';
+        setTimeout(callback, 300);
+    }
+
+    fadeIn() {
+        setTimeout(() => {
+            this.mainContent.style.opacity = '1';
+            this.mainContent.style.transform = 'translateY(0)';
+        }, 50);
     }
 }
 
-function setupAnimations() {
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all feature cards
-    document.querySelectorAll('.feature-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
-    });
-}
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new App();
+});
 
-function showNotification(message) {
-    // Create a simple notification
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 5px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        z-index: 1000;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.opacity = '1';
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Utility function to detect if user prefers reduced motion
-function prefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-// Add some console info for developers
-console.log('🚀 Static Website loaded successfully!');
-console.log('📦 Repository: Multi-branch GitHub Pages deployment');
-console.log('🌟 Features: Responsive design, automated deployment, smooth animations');
+console.log('🎨 Luxury Art Gallery loaded successfully');
+console.log('✨ Subverting beauty through elegant design');

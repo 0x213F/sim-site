@@ -3,76 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Website - Multi-Branch Deployment</title>
+    <title>Luxury Art Gallery</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <h1 class="logo">Static Site</h1>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Gallery</span>
             </div>
-        </nav>
-    </header>
+            <ul class="nav-links">
+                <li><a href="/" data-route="home" class="nav-link">Home</a></li>
+                <li><a href="/projects" data-route="projects" class="nav-link">Projects</a></li>
+                <li><a href="/beauty" data-route="beauty" class="nav-link">Beauty</a></li>
+                <li><a href="/exhibitions" data-route="exhibitions" class="nav-link">Exhibitions</a></li>
+                <li><a href="/art-objects" data-route="art-objects" class="nav-link">Art Objects</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h2>Welcome to Your Static Website</h2>
-                <p>This is a responsive static website with multi-branch GitHub Pages deployment.</p>
-                <div class="branch-info">
-                    <p>Current branch: <span id="current-branch">Loading...</span></p>
-                    <p>Deploy URL: <span id="deploy-url">Loading...</span></p>
-                </div>
-                <button class="cta-button">Get Started</button>
-            </div>
-        </section>
-
-        <section id="about" class="content-section">
-            <div class="container">
-                <h3>About This Project</h3>
-                <p>This static website demonstrates:</p>
-                <ul>
-                    <li>Responsive design that works on all devices</li>
-                    <li>Multi-branch deployment to GitHub Pages</li>
-                    <li>Automated CI/CD with GitHub Actions</li>
-                    <li>Clean, modern web development practices</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="contact" class="content-section">
-            <div class="container">
-                <h3>Features</h3>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>Responsive Design</h4>
-                        <p>Mobile-first approach with flexible layouts</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Multi-Branch Deploy</h4>
-                        <p>Each branch gets its own deployment URL</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>GitHub Actions</h4>
-                        <p>Automated deployment on every push</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main id="main-content" class="main-content">
+        <!-- Content will be dynamically loaded here -->
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Static Website Project. Built with ❤️ and deployed with GitHub Pages.</p>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
