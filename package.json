@@ -1,0 +1,18 @@
+{
+  "name": "static-website",
+  "version": "1.0.0",
+  "description": "A static website with multi-branch GitHub Pages deployment",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/ --watch=.",
+    "build": "echo 'No build process needed for static site'",
+    "serve": "http-server -p 8080 -c-1"
+  },
+  "keywords": ["static", "website", "github-pages"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "http-server": "^14.1.1"
+  }
+}
