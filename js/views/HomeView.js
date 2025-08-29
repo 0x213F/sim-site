@@ -2,6 +2,11 @@ export class HomeView {
     render() {
         return `
             <div class="view active">
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <h1 class="welcome-message">hello :)</h1>
+                </section>
+                
                 <!-- Hero Section -->
                 <section class="hero-section">
                     <h1 class="hero-title">Gallery is a Luxury Art Space...</h1>

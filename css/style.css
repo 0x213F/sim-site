@@ -105,6 +105,29 @@ html, body {
     min-height: calc(100vh - 80px);
 }
 
+/* Welcome Section */
+.welcome-section {
+    background: var(--white);
+    padding: 120px 60px 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-gray);
+}
+
+.welcome-message {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 10vw, 140px);
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0;
+    transition: var(--transition);
+}
+
+.welcome-message:hover {
+    color: var(--text-gray);
+}
+
 /* Hero Section (Home) */
 .hero-section {
     min-height: calc(100vh - 80px);
@@ -430,6 +453,10 @@ html, body {
         font-size: clamp(36px, 8vw, 80px);
     }
     
+    .welcome-section {
+        padding: 80px 40px 60px;
+    }
+    
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -479,6 +506,10 @@ html, body {
     .beauty-hero,
     .contact-section {
         padding: 60px 30px;
+    }
+    
+    .welcome-section {
+        padding: 60px 30px 40px;
     }
     
     .hero-keywords {
@@ -544,6 +575,10 @@ html, body {
     
     .hero-subtitle {
         font-size: 16px;
+    }
+    
+    .welcome-section {
+        padding: 40px 15px 30px;
     }
     
     .card-content {
